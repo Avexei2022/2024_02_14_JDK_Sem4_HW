@@ -5,6 +5,10 @@ import ru.gb.iamstudent.model.staffers.StafferList;
 
 import java.util.List;
 
+
+/**
+ * Класс Отдела кадров, держателя справочника сотрудников.
+ */
 public class HROfficerEmulator {
     StafferList<Staffer> stafferList;
 
@@ -12,6 +16,9 @@ public class HROfficerEmulator {
         createStafferList();
     }
 
+    /**
+     * Метод формирует первоначальный справочник сотрудников
+     */
     private void createStafferList() {
         stafferList = new StafferList<>();
         stafferList.addStafferToList(new Staffer(1111111, "Ivan Ivanov", 11));
@@ -25,10 +32,21 @@ public class HROfficerEmulator {
         stafferList.addStafferToList(new Staffer(9999999, "Fedor Fedorov", 14));
     }
 
+    /**
+     * Метод получения текущего справочника сотрудников
+     * @return справочник сотрудников
+     */
     public String getCurrentStafferList() {
         return stafferList.toString();
     }
 
+    /**
+     * Метод добавления нового сотрудника в справочник
+     * @param name Имя сотрудника
+     * @param s_phoneNumber Телефон сотрудника
+     * @param s_experience Стаж работы
+     * @return Сообщение с результатом
+     */
     public String addNewStaffer(String name, String s_phoneNumber, String s_experience) {
         int phoneNumber;
         int experience;
@@ -44,6 +62,11 @@ public class HROfficerEmulator {
             return "\nТакой сотрудник уже существует в справочнике";
     }
 
+    /**
+     * Метод поиска сотрудника по стажу работы
+     * @param s_experience стаж работы
+     * @return Результат поиска
+     */
     public String findStafferByExperience(String s_experience) {
         int experience;
         try {
@@ -61,6 +84,11 @@ public class HROfficerEmulator {
         }
     }
 
+    /**
+     * Метод поиска телефона сотрудника по имени сотрудника
+     * @param name Имя сотрудника
+     * @return Результат поиска
+     */
     public String findPhoneByName(String name) {
         List<Integer> resultList = stafferList.getStafferList().stream()
                 .filter(staffer -> staffer.getName().equals(name))
@@ -73,6 +101,11 @@ public class HROfficerEmulator {
         }
     }
 
+    /**
+     * Метод поиска сотрудника по табельному номеру
+     * @param s_id Табельный номер
+     * @return Результат поиска
+     */
     public String findStafferByNumber(String s_id) {
         int id;
         try {
